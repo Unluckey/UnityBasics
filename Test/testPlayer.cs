@@ -5,19 +5,9 @@ using UnityEngine;
 public class testPlayer : Creature {
 	public StateMachine<testPlayer> moveControl;
 
-	public void getDamage(float damage){
-		Dictionary<string,System.Object> param = new Dictionary<string, System.Object> ();
-		param.Add ("damage", damage);
-		NotifySystem.NotifyEvent evt = new NotifySystem.NotifyEvent (
-			                               NotifySystem.NotifyType.PLAYER_ON_HURT,
-			                               param,
-			                               this);
-		
-		NotifySystem.NotificationCenter.getInstance ().postNotification (evt);
-	}
 	void Awake(){
 		base.Awake ();
-		maxHp = 100;
+		maxHp = 100.0f;
 		hp = maxHp;
 	}
 	// Use this for initialization
