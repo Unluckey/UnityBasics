@@ -6,14 +6,11 @@ namespace NotifySystem{
 	public class HpManager:Listener
 	{
 		GameEntityManager entityManager = GameEntityManager.getInstance();
-		EventListenerDelegate reciever = null;
-		NotifyType notifyType = NotifyType.CREATURE_ON_HURT;
 
 		public HpManager(){
-			Dictionary<NotifyType,EventListenerDelegate> recieverDic = new Dictionary<NotifyType, EventListenerDelegate> ();
 			recieverDic.Add (NotifyType.CREATURE_ON_HURT, new EventListenerDelegate (dealDamage));
 			recieverDic.Add(NotifyType.CREATURE_ON_HEAL,new EventListenerDelegate(dealHealing));
-			register(recieverDic);
+			register();
 		}
 
 		void dealHealing(NotifyEvent notifyEvent){
