@@ -4,8 +4,23 @@ using System.Collections;
 
 public class Creature:BaseEntity
 {
-	public float hp;
-	public float maxHp;
+	public float hp{
+		get{
+			return hp;
+		}
+		set{
+			hp = value;
+			Dictionary<string,System.Object> param = new Dictionary<string, System.Object> ();
+			NotifySystem.NotifyEvent evt = new NotifySystem.NotifyEvent (
+				                               NotifySystem.NotifyType.CREATURE_HPCHANGE,
+				                               this);
+		}
+	};
+	public float maxHp{
+		get{
+			return hp
+		}
+	};
 
 	public float speed;
 	public float maxSpeed;
@@ -35,4 +50,3 @@ public class Creature:BaseEntity
 	}
 
 }
-
