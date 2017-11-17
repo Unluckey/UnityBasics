@@ -33,7 +33,7 @@ namespace NotifySystem{
 			}
 		}
 
-		public NotifyEvent(NotifyType type, Dictionary<string, System.Object> args, Object sender)
+		public NotifyEvent(NotifyType type, Dictionary<string, System.Object> args, Object sender = null)
 		{
 			Type = type;
 			arguments = args;
