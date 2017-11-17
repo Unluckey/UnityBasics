@@ -18,14 +18,21 @@ namespace NotifySystem{
 
 		Dictionary<NotifyType,EventListenerDelegate> notifications = new Dictionary<NotifyType,EventListenerDelegate>();
 
-		public void registerObserver(NotifyType type, EventListenerDelegate listener){
+		public void registerObserver(NotifyType type, EventListenerDelegate listener, bool isSigle = false){
 			if (listener == null){
 				Debug.LogError("registerObserver: listener不能为空");
 				return;
 			}
 			Debug.Log("NotifacitionCenter: 添加监视" + type);
 			EventListenerDelegate tryListener = null;
-			notifications.TryGetValue(type, out tryListener);
+
+			if (notifications.TryGetValue (type, out tryListener) && isSigle) {
+				foreach (EventListenerDelegate dlg in tryListener.GetInvocationList ()) {
+					if (dlg.Method.Name.Equals (listener.Method.Name)) {
+						return;
+					}
+				}
+			}
 			tryListener += listener;
 			notifications[type] = tryListener;
 		}
