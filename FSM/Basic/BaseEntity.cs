@@ -56,9 +56,5 @@ public abstract class BaseEntity:MonoBehaviour{
 	public virtual void ReleaseThis() { 
 		GameEntityManager.getInstance().Remove (ID);
 	}
-
-	public virtual bool HandleMessage (message.Telegram telegram){
-		return false;
-	}
 }
 

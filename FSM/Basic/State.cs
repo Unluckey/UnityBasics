@@ -7,7 +7,7 @@ public class State<EntityType>
 		
 	}
 
-	public virtual void Execute (EntityType owner){
+	public virtual void Run (EntityType owner){
 
 	}
 

@@ -8,7 +8,7 @@ public class WaterDetector : MonoBehaviour
 		if (hit.gameObject.GetComponent("Rigidbody2D") != null) {
 			Debug.Log ("hel");
 			transform.parent.GetComponent<WaterEffect> ().Splash (hit.transform.position.x, hit.gameObject.GetComponent<Rigidbody2D> ().velocity.y/20f);
-			hit.gameObject.GetComponent<testPlayer> ().onGround = true;
+			//hit.gameObject.GetComponent<testPlayer> ().onGround = true;
 			hit.gameObject.GetComponent<Rigidbody2D> ().velocity *= 0.9f;
 		}
 	}

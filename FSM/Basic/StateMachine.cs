@@ -15,6 +15,7 @@ public class StateMachine<T>
 	}
 	public void setCurrentState(State<T> state){
 		currentState = state;
+		state.Enter (owner);
 	}
 	// Use this for initialization
 	void Start ()
@@ -25,10 +26,10 @@ public class StateMachine<T>
 	public void Update ()
 	{
 		if (globalState != null) {
-			globalState.Execute (owner);
+			globalState.Run (owner);
 		}
 		if (currentState != null) {
-			currentState.Execute (owner);
+			currentState.Run (owner);
 		}
 	}
 
