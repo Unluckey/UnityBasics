@@ -8,8 +8,7 @@ public class UI_HpText : BaseEntity {
 	public Creature target = null;
 	void Awake(){
 		base.Awake ();
-
-		Dictionary<NotifySystem.NotifyType,NotifySystem.EventListenerDelegate> recieverDic = 
+		Dictionary<NotifySystem.NotifyType,NotifySystem.EventListenerDelegate> recieverDic =
 			new Dictionary<NotifySystem.NotifyType, NotifySystem.EventListenerDelegate> ();
 		NotifySystem.EventListenerDelegate reciever = new NotifySystem.EventListenerDelegate (UpdateUI);
 		recieverDic.Add (NotifySystem.NotifyType.CREATURE_CHANGE_HP,reciever);
