@@ -40,6 +40,8 @@ public class Creature:BaseEntity
 
 	public Vector2 extraVelocity;
 
+	public Animator anim;
+
 	public void GetHurt(float damage){
 		Dictionary<string,System.Object> param = new Dictionary<string, System.Object> ();
 		param.Add ("damage", damage);
@@ -58,6 +60,9 @@ public class Creature:BaseEntity
 			param,
 			this);
 		NotifySystem.NotificationCenter.getInstance ().postNotification (evt);
+	}
+	void Start(){
+		
 	}
 
 }
