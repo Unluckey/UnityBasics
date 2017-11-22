@@ -37,13 +37,28 @@ namespace NotifySystem{
 			notifications[type] = tryListener;
 		}
 			
-		public void removeObserver(NotifyType type, EventListenerDelegate listener){
-			if (listener == null){
+		public void removeObserver(NotifyType type, EventListenerDelegate listenerDelegate){
+			if (listenerDelegate == null){
 				Debug.LogError("removeObserver: listener不能为空");
 				return;
 			}
 			Debug.Log("NotifacitionCenter: 移除监视" + type);
-			notifications[type] -= listener;
+			notifications[type] -= listenerDelegate;
+		}
+
+		public void removeObserver(Listener listener){
+			if (listener == null){
+				Debug.LogError("removeObserver: listener不能为空");
+				return;
+			}
+			foreach (NotifyType type in listener.recieverDic.Keys) {
+				Debug.Log ("NotifacitionCenter: 移除监视" + type);
+				notifications [type] -= listener.recieverDic[type];
+			}
+		}
+
+		public void removeObserver(){
+			
 		}
 
 		public void removeAllObservers(){

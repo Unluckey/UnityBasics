@@ -22,7 +22,7 @@ namespace NotifySystem{
 			register ();
 		}
 
-		public void register( ){
+		public void register(){
 			foreach (var Key in recieverDic.Keys) {
 				NotificationCenter.getInstance ().registerObserver (Key, recieverDic[Key],isSingle);
 			}
@@ -38,31 +38,36 @@ namespace NotifySystem{
 		}
 	}
 	public class MonoListener:MonoBehaviour{
-		Listener listener = null;
+		Listener lsn = null;
+		Listener listener{
+			get{
+				if (lsn == null)
+					lsn =  new Listener ();
+				return lsn;
+			}
+			set{
+				lsn = value;
+			}
+		}
+
 		public bool isSingle{
 			get{
-				if (listener == null)
-					listener = new Listener ();
 				return listener.isSingle;
 			}
 			set{
-				if (listener == null)
-					listener = new Listener ();
 				listener.isSingle = value;
 			}
 		}
 		public Dictionary<NotifyType,EventListenerDelegate> recieverDic{
 			get{
-				if (listener == null)
-					listener = new Listener ();
 				return listener.recieverDic;
 			}
 			set{
-				if (listener == null)
-					listener = new Listener ();
 				listener.recieverDic = value;
 			}
 		}
+
+
 		public void register(){
 			listener.register ();
 		}
@@ -72,6 +77,16 @@ namespace NotifySystem{
 
 		public void register(NotifyType notifyType,EventListenerDelegate eventReceiver){
 			listener.register (notifyType, eventReceiver);
+		}
+
+		void Awake(){
+		}
+		void Start(){
+		}
+		void Update(){
+		}
+		void OnDisable(){
+			NotificationCenter.getInstance ().removeObserver (listener);
 		}
 	}
 }

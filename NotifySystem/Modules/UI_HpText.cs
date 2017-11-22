@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_HpText : BaseEntity {
+public class UI_HpText : NotifySystem.MonoListener {
 	NotifySystem.Listener listener = null;
 	public Creature target = null;
 	void Awake(){
-		base.Awake ();
 		Dictionary<NotifySystem.NotifyType,NotifySystem.EventListenerDelegate> recieverDic =
 			new Dictionary<NotifySystem.NotifyType, NotifySystem.EventListenerDelegate> ();
 		NotifySystem.EventListenerDelegate reciever = new NotifySystem.EventListenerDelegate (UpdateUI);
@@ -16,8 +15,13 @@ public class UI_HpText : BaseEntity {
 
 		listener = new NotifySystem.Listener (recieverDic);
 	}
+	void Start(){
+		UpdateUI (null);
+	}
 
 	void UpdateUI(NotifySystem.NotifyEvent notifyEvent){
-		GetComponent<Text>().text = (target.hp.ToString() + "/" + target.maxHp.ToString());
+		if (target) {
+			GetComponent<Text> ().text = (target.hp.ToString () + "/" + target.maxHp.ToString ());
+		}
 	}
 }

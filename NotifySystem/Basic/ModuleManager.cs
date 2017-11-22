@@ -11,5 +11,12 @@ namespace NotifySystem{
 		void Awake(){
 			listeners.Add(new HpManager());
 		}
+
+		void OnDisable(){
+			foreach(Listener listener in listeners){
+				NotificationCenter.getInstance ().removeObserver (listener);
+			}
+		}
+
 	}
 }
