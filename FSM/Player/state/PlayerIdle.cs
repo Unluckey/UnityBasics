@@ -13,14 +13,14 @@ class PlayerIdle:State<Player>{
 
 
 	void KeyCheck(Player owner){
-		if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-			owner.isFacingRight = false;
+		if (Input.GetKey(KeyCode.LeftArrow)) {
+			owner.faceLeft ();
 			owner.moveControl.ChangeState (new playerMove ());
-		} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
-			owner.isFacingRight = true;
+		} else if (Input.GetKey(KeyCode.RightArrow)) {
+			owner.faceRight ();
 			owner.moveControl.ChangeState (new playerMove ());
 		}
-		if (Input.GetKeyDown (KeyCode.Z)&&owner.isOnGround()) {
+		if (Input.GetKey (KeyCode.Z)&&owner.isOnGround()) {
 			owner.moveControl.ChangeState (new PlayerJump ());
 		}
 	}
