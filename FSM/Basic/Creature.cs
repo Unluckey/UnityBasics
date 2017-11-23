@@ -33,9 +33,6 @@ public class Creature:BaseEntity
 		}
 	}
 
-	public float speed;
-	public float maxSpeed;
-
 	public bool onGround;
 
 	public Vector2 extraVelocity;
