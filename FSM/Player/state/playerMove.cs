@@ -6,20 +6,34 @@ public class playerMove : State<Player>{
 		//owner.anim.SetBool ();
 	}
 	override public void Run(Player owner){
-
+		KeyCheck (owner);
 	}
 	override public void Exit(Player owner){
-//		owner.anim.SetBool ();
+		//owner.anim.SetBool ();
 	}
+
 	void KeyCheck(Player owner){
-		if (GetKey(KeyCode.LeftArrow)) {
+		float moveVelocity = 0;
+		//move
+		if (Input.GetKey(KeyCode.LeftArrow)) {
 			if(owner.isFacingRight){
-			//	owner.SpriteRenderer.flip
+				owner.isFacingRight = false;
+				owner.spriteRenderer.flipX = true;
 			}
-		}else if(GetKey(KeyCode.RightArrow)){
+			moveVelocity -= owner.speed;
+		}else if(Input.GetKey(KeyCode.RightArrow)){
 			if(!owner.isFacingRight){
-			//	flip;
+				owner.isFacingRight = true;
+				owner.spriteRenderer.flipX = false;
 			}
+			moveVelocity += owner.speed;
+		}
+		owner.body.velocity = new Vector2 (moveVelocity + owner.extraVelocity.x, owner.body.velocity.y);
+
+		//Jump
+		if (Input.GetKeyDown (KeyCode.Z)&&owner.isOnGround()) {
+			owner.moveControl.ChangeState (new PlayerJump ());
 		}
 	}
 }
+

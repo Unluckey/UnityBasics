@@ -5,7 +5,7 @@ class PlayerIdle:State<Player>{
 	override public void Enter(Player owner){
 	}
 	override public void Run(Player owner){
-	//Keycheck();
+		KeyCheck(owner);
 	}
 	override public void Exit(Player owner){
 	
@@ -19,6 +19,9 @@ class PlayerIdle:State<Player>{
 		} else if (Input.GetKeyDown (KeyCode.RightArrow)) {
 			owner.isFacingRight = true;
 			owner.moveControl.ChangeState (new playerMove ());
+		}
+		if (Input.GetKeyDown (KeyCode.Z)&&owner.isOnGround()) {
+			owner.moveControl.ChangeState (new PlayerJump ());
 		}
 	}
 }
