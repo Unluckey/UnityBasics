@@ -5,6 +5,7 @@ class PlayerIdle:State<Player>{
 	override public void Enter(Player owner){
 	}
 	override public void Run(Player owner){
+		Debug.Log("idle");
 		KeyCheck(owner);
 	}
 	override public void Exit(Player owner){

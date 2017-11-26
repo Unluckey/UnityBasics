@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : Creature {
 
 	public float jumpVelocity;
+	public float jumpMoveForce = 1.0f;
 	public float speed;
 	public float maxSpeed;
 
@@ -22,7 +23,7 @@ public class Player : Creature {
 	// Use this for initialization
 	void Start () {
 		base.Start ();
-		groundCheckPoint = transform.Find ("GroundCheckPoint").transform;
+		groundCheckPoint = transform.Find ("GroundCheckPoint");
 		anim = GetComponent<Animator> ();
 		body = GetComponent<Rigidbody2D> ();
 		spriteRenderer = GetComponent<SpriteRenderer> ();
@@ -35,10 +36,10 @@ public class Player : Creature {
 	
 	// Update is called once per frame
 	void Update () {
-		moveControl.Update();
-	}
-	void fixedUpdate(){
 		
+	}
+	void FixedUpdate(){
+		moveControl.Update();
 	}
 	public bool isOnGround(){
 		Collider2D[] Colliders = Physics2D.OverlapCircleAll (groundCheckPoint.position, groundCheckRadius);

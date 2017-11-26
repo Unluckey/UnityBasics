@@ -7,6 +7,7 @@ public class PlayerJump : State<Player>{
 	{
 		Debug.Log ("enterJump");
 		owner.anim.SetBool ("jump",true);
+		owner.anim.SetBool ("onGround", false);
 		owner.body.velocity = new Vector2(owner.body.velocity.x,owner.jumpVelocity);
 	}
 	public override void Run (Player owner){

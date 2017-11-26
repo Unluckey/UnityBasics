@@ -27,5 +27,14 @@ public class PlayerInputChecker
 		}
 		owner.body.velocity = new Vector2 (moveVelocity + owner.extraVelocity.x, owner.body.velocity.y);
 	}
+	public void CheckHorizonMoveByForce(Player owner){
+		if (Input.GetKey (KeyCode.LeftArrow)) {
+			owner.faceLeft ();
+			owner.body.AddForce (new Vector2 (-owner.jumpMoveForce, 0));
+		} else if (Input.GetKey (KeyCode.RightArrow)) {
+			owner.faceRight ();
+			owner.body.AddForce (new Vector2 (owner.jumpMoveForce, 0));
+		}
+	}
 }
 

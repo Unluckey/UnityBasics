@@ -10,7 +10,7 @@ public class PlayerFall : State<Player>{
 	public override void Run(Player owner){
 		KeyCheck (owner);
 		if (owner.isOnGround ()) {
-			owner.anim.SetTrigger ("onGround");
+			owner.anim.SetBool ("onGround",true);
 			owner.moveControl.ChangeState (new PlayerIdle ());
 		}
 	}
