@@ -24,4 +24,15 @@ class Buff<T>{
   public virtual void OnCover(T owner){
 
   }
+
+  //
+  public virtual float OnHurt(float damage){
+
+  }
+  public virtual float OnHeal(float healValue){
+
+  }
+  public virtual void OnJump(){
+
+  }
 }

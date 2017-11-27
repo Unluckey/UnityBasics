@@ -4,6 +4,7 @@ using System.Collections;
 
 public class Creature:BaseEntity
 {
+	BuffBar<Creature> buffs;
 	float HP = 0;
 	public float hp{
 		get{
@@ -32,14 +33,12 @@ public class Creature:BaseEntity
 			NotifySystem.NotificationCenter.getInstance ().postNotification (evt);
 		}
 	}
-
 	public bool onGround;
-
 	public Vector2 extraVelocity;
 
 	public Animator anim;
 
-	public void GetHurt(float damage){
+	public virtual void GetHurt(float damage){
 		Dictionary<string,System.Object> param = new Dictionary<string, System.Object> ();
 		param.Add ("damage", damage);
 		NotifySystem.NotifyEvent evt = new NotifySystem.NotifyEvent (
@@ -49,7 +48,7 @@ public class Creature:BaseEntity
 		NotifySystem.NotificationCenter.getInstance ().postNotification (evt);
 	}
 
-	public void GetHealing(float healValue){
+	public virtual void GetHealing(float healValue){
 		Dictionary<string,System.Object> param = new Dictionary<string, System.Object> ();
 		param.Add ("healValue", healValue);
 		NotifySystem.NotifyEvent evt = new NotifySystem.NotifyEvent (
@@ -57,6 +56,9 @@ public class Creature:BaseEntity
 			param,
 			this);
 		NotifySystem.NotificationCenter.getInstance ().postNotification (evt);
+	}
+	void Awake(){
+		buffs = new BuffBar(this);
 	}
 	void Start(){
 

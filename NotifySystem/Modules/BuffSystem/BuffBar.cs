@@ -1,6 +1,13 @@
 using UnityEngine;
 using System;
 
+enum BuffCallBack
+{
+  VALUE_DAMAGE,
+  VALUE_HEAL,
+  TRIGGER_HIT,
+  TRIGGER_JUMP
+}
 class BuffBar<T>{
   T owner;
   List<Buff<T>> buffList;
@@ -22,8 +29,8 @@ class BuffBar<T>{
     Buff<T> temp = TryGetBuff(buff.GetID);
     if(temp != null){
       buff.OnRemove(ower);
+      buffList.Remove(temp);
     }
-    //buffList.pop();
   }
   public void RemoveAllBuff(){
     foreach(Buff<T> o in buffList){
@@ -32,26 +39,41 @@ class BuffBar<T>{
     buffList = new List<Buff<T>>();
   }
 
+  void Buff<T> TryGetBuff(Buff<T> buff){
+    foreach(Buff<T> o in buffList){
+      if(o.GetID() == buff.GetID){
+        return o;
+      }
+    }
+    return null;
+  }
+  void Buff<T> TryGetBuff(int buffID){
+    foreach(Buff<T> o in buffList){
+      if(o.GetID() == buffID){
+        return o;
+      }
+    }
+    return null;
+  }
+
   public void Update(){
     foreach(Buff<T> o in buffList){
-      o.Run(owner);
+      o.Run();
     }
   }
-  void Buff<T> TryGetBuff(Buff<T> buff){
-      foreach(Buff<T> o in buffList){
-        if(o.GetID() == buff.GetID){
-          return o;
-        }
-      }
-      return null;
-    }
-    void Buff<T> TryGetBuff(int buffID){
-        foreach(Buff<T> o in buffList){
-          if(o.GetID() == buffID){
-            return o;
-          }
-        }
-        return null;
-      }
 
+  public float OnHurt(float damage){
+    float extraValue = 0;
+    foreach(Buff<T> o in buffList){
+      extraValue += o.OnHurt(damage);
+    }
+    return (damage+extraValue);
+  }
+  public float OnHeal(float healValue){
+    float extraValue = 0;
+    foreach(Buff<T> o in buffList){
+      extraValue += o.OnHeal(healValue);
+    }
+    return (healValue+extraValue);
+  }
 }
