@@ -59,7 +59,11 @@ public class Creature:BaseEntity
 		NotifySystem.NotificationCenter.getInstance ().postNotification (evt);
 	}
 	void Start(){
-		
+
+	}
+
+	public virtual bool isOnGround(){
+		return false;
 	}
 
 }

@@ -10,6 +10,8 @@ namespace NotifySystem{
 		CREATURE_ON_HEAL,
 		CREATURE_ON_HURT,
 
+		BUFF_ON_ADD,
+		BUFF_ON_REMOVE,
 		BLOCK_PLACE
 	}
 }

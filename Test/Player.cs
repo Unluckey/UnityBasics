@@ -33,15 +33,15 @@ public class Player : Creature {
 		maxHp = 100.0f;
 		hp = maxHp;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 	void FixedUpdate(){
 		moveControl.Update();
 	}
-	public bool isOnGround(){
+	public override bool isOnGround(){
 		Collider2D[] Colliders = Physics2D.OverlapCircleAll (groundCheckPoint.position, groundCheckRadius);
 		onGround = false;
 		foreach (Collider2D col in Colliders) {
@@ -52,11 +52,11 @@ public class Player : Creature {
 		return onGround;
 	}
 
-	public void faceRight(){
+	public override void faceRight(){
 		isFacingRight = true;
 		spriteRenderer.flipX = false;
 	}
-	public void faceLeft(){
+	public override void faceLeft(){
 		isFacingRight = false;
 		spriteRenderer.flipX = true;
 	}
