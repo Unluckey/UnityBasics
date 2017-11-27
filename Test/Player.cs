@@ -52,11 +52,11 @@ public class Player : Creature {
 		return onGround;
 	}
 
-	public override void faceRight(){
+	public void faceRight(){
 		isFacingRight = true;
 		spriteRenderer.flipX = false;
 	}
-	public override void faceLeft(){
+	public void faceLeft(){
 		isFacingRight = false;
 		spriteRenderer.flipX = true;
 	}

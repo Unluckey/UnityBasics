@@ -58,7 +58,7 @@ public class Creature:BaseEntity
 		NotifySystem.NotificationCenter.getInstance ().postNotification (evt);
 	}
 	void Awake(){
-		buffs = new BuffBar(this);
+		buffs = new BuffBar<Creature>(this);
 	}
 	void Start(){
 
