@@ -4,7 +4,8 @@ using System.Collections;
 
 public class Creature:BaseEntity
 {
-	BuffBar<Creature> buffs;
+	public BuffBar<Creature> buffs;
+
 	float HP = 0;
 	public float hp{
 		get{
@@ -15,6 +16,7 @@ public class Creature:BaseEntity
 			Dictionary<string,System.Object> param = new Dictionary<string, System.Object> ();
 			NotifySystem.NotifyEvent evt = new NotifySystem.NotifyEvent (
 				                               NotifySystem.NotifyType.CREATURE_CHANGE_HP,
+				                               param,
 				                               this);
 			NotifySystem.NotificationCenter.getInstance ().postNotification (evt);
 		}
@@ -39,6 +41,10 @@ public class Creature:BaseEntity
 	public Animator anim;
 
 	public virtual void GetHurt(float damage){
+		damage = buffs.OnBuffCallback(BuffCallback.VALUE_BEFORE_DAMAGE,damage);
+
+		damage = buffs.OnBuffCallback (BuffCallback.VALUE_APPLY_DAMAGE, damage);
+
 		Dictionary<string,System.Object> param = new Dictionary<string, System.Object> ();
 		param.Add ("damage", damage);
 		NotifySystem.NotifyEvent evt = new NotifySystem.NotifyEvent (
@@ -49,6 +55,11 @@ public class Creature:BaseEntity
 	}
 
 	public virtual void GetHealing(float healValue){
+		
+		healValue = buffs.OnBuffCallback(BuffCallback.VALUE_BEFORE_HEAL,healValue);
+
+		healValue = buffs.OnBuffCallback (BuffCallback.VALUE_APPLY_HEAL, healValue);
+
 		Dictionary<string,System.Object> param = new Dictionary<string, System.Object> ();
 		param.Add ("healValue", healValue);
 		NotifySystem.NotifyEvent evt = new NotifySystem.NotifyEvent (
@@ -57,11 +68,17 @@ public class Creature:BaseEntity
 			this);
 		NotifySystem.NotificationCenter.getInstance ().postNotification (evt);
 	}
-	void Awake(){
+
+	protected void Awake(){
 		buffs = new BuffBar<Creature>(this);
 	}
-	void Start(){
+	protected void Start(){
 
+	}
+	protected void Update(){
+		buffs.Update ();
+	}
+	protected void FixedUpdate(){
 	}
 
 	public virtual bool isOnGround(){

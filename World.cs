@@ -20,5 +20,14 @@ public class World:MonoBehaviour
 		SceneLoader.targetSceneName = targetSceneName;
 		SceneManager.LoadScene ("LoadingScene");
 	}
+
+	public void GiveFragile(Creature target){
+		Dictionary<string,System.Object> param = new Dictionary<string, object> ();
+		param.Add ("target", target);
+		param.Add("buff",new Buff_Fragile(2.0f));
+		NotifySystem.NotificationCenter.getInstance ().postNotification (
+			new NotifySystem.NotifyEvent (NotifySystem.NotifyType.BUFF_ADD,param)
+		);
+	}
 }
 

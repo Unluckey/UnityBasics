@@ -17,11 +17,11 @@ public class Player : Creature {
 
 	public Rigidbody2D body;
 	public SpriteRenderer spriteRenderer;
-	void Awake(){
+	protected void Awake(){
 		base.Awake ();
 	}
 	// Use this for initialization
-	void Start () {
+	protected void Start () {
 		base.Start ();
 		groundCheckPoint = transform.Find ("GroundCheckPoint");
 		anim = GetComponent<Animator> ();
@@ -36,7 +36,7 @@ public class Player : Creature {
 
 	// Update is called once per frame
 	void Update () {
-
+		base.Update ();
 	}
 	void FixedUpdate(){
 		moveControl.Update();

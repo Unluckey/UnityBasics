@@ -10,6 +10,7 @@ namespace NotifySystem{
 
 		void Awake(){
 			listeners.Add(new HpManager());
+			listeners.Add (new BuffDealer ());
 		}
 
 		void OnDisable(){
