@@ -38,7 +38,11 @@ public class Buff<T>{
 		Debug.Log("removed");
 	}
 	public virtual void OnCover(T owner,Buff<T> buff){
-		//SendMessage : BUFF_ON_COVER : owner,this
+		// Dictionary<string,System.Object> param = new Dictionary<string,System.Object>();
+		// param.Add("owner",owner.GetID());
+		// NotifySystem.NotifyEvent evt = new NotifySystem.notifyEvent(NotifySystem.NotifyType.BUFF_ON_COVER,param);
+		// NotifySystem.NotifacitionCenter.getInstance().postNotification()
+		// //SendMessage : BUFF_ON_COVER : owner,this
 	}
 	protected virtual bool isTimeUp(){
 		return Time.time > startTime + duration;;

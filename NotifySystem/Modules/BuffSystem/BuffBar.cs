@@ -13,6 +13,7 @@ public enum BuffCallback{
 	TRIGGER_JUMP,
 	TRIGGER_GET_HIT
 }
+
 public class BuffBar<T>{
 	Dictionary<BuffCallback,BuffDelegator> CallbackDic;
 
@@ -133,6 +134,17 @@ public class BuffBar<T>{
 			o.Run (owner);
 		}
 		ApplyRemove ();
+		UpdateUI();
+	}
+	void UpdateUI(){
+		Dictionary<string,System.Object> param = new Dictionary<string,System.Object>();
+		param.Add("owner",owner);
+		NotifySystem.NotifyEvent evt = new NotifySystem.NotifyEvent(
+			NotifySystem.NotifyType.UI_BUFF_UPDATE,
+			param,
+			this
+			);
+		NotifySystem.NotificationCenter.getInstance().postNotification(evt);
 	}
 
 
