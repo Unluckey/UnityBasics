@@ -16,15 +16,15 @@ public abstract class BaseEntity:MonoBehaviour{
 
 
 
-	public void Awake(){
+	protected void Awake(){
 		SetID ();
 		GameEntityManager.getInstance().Register (this);
 	}
-	public void Start(){
+	protected void Start(){
 
 	}
 
-	void Update(){
+	protected void Update(){
 	}
 	public BaseEntity(string name){
 		SetName (name);
@@ -33,7 +33,7 @@ public abstract class BaseEntity:MonoBehaviour{
 	public BaseEntity(){
 	}
 		
-	private void SetID(){
+	protected void SetID(){
 		ID = NextValidID;
 		NextValidID++;
 	}

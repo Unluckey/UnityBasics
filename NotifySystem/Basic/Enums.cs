@@ -11,6 +11,7 @@ namespace NotifySystem{
 		CREATURE_ON_HURT,
 
 		BUFF_ADD,
-		BUFF_REMOVE
+		BUFF_REMOVE,
+		UI_BUFF_UPDATE
 	}
 }

@@ -85,7 +85,7 @@ namespace NotifySystem{
 		}
 		void Update(){
 		}
-		void OnDisable(){
+		protected void OnDisable(){
 			NotificationCenter.getInstance ().removeObserver (listener);
 		}
 	}

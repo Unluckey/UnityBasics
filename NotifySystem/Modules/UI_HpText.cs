@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UI_HpText : NotifySystem.MonoListener {
 	NotifySystem.Listener listener = null;
 	public Creature target = null;
+
 	void Awake(){
 		Dictionary<NotifySystem.NotifyType,NotifySystem.EventListenerDelegate> recieverDic =
 			new Dictionary<NotifySystem.NotifyType, NotifySystem.EventListenerDelegate> ();

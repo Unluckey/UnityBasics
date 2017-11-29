@@ -70,12 +70,14 @@ public class Creature:BaseEntity
 	}
 
 	protected void Awake(){
+		base.Awake ();
 		buffs = new BuffBar<Creature>(this);
 	}
 	protected void Start(){
-
+		base.Start ();
 	}
 	protected void Update(){
+		base.Update ();
 		buffs.Update ();
 	}
 	protected void FixedUpdate(){

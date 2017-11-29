@@ -16,12 +16,20 @@ public enum BuffCallback{
 
 public class BuffBar<T>{
 	Dictionary<BuffCallback,BuffDelegator> CallbackDic;
+	Dictionary<string,object> uiUpdateParam;
+	NotifySystem.NotifyEvent uiUpdateEvent;
 
 	T owner;
-	List<Buff<T>> buffList;
+	public List<Buff<T>> buffList;
 	public List<Buff<T>> toBeRemove;
 	public BuffBar(T owner){
 		this.owner = owner;
+		uiUpdateParam = new Dictionary<string, object>();
+		uiUpdateParam.Add ("owner", owner);
+		uiUpdateEvent = new NotifySystem.NotifyEvent (
+			NotifySystem.NotifyType.UI_BUFF_UPDATE,
+			uiUpdateParam);
+		
 		buffList = new List<Buff<T>> ();
 		toBeRemove = new List<Buff<T>> ();
 		CallbackDic = new Dictionary<BuffCallback, BuffDelegator> ();
@@ -137,14 +145,7 @@ public class BuffBar<T>{
 		UpdateUI();
 	}
 	void UpdateUI(){
-		Dictionary<string,System.Object> param = new Dictionary<string,System.Object>();
-		param.Add("owner",owner);
-		NotifySystem.NotifyEvent evt = new NotifySystem.NotifyEvent(
-			NotifySystem.NotifyType.UI_BUFF_UPDATE,
-			param,
-			this
-			);
-		NotifySystem.NotificationCenter.getInstance().postNotification(evt);
+		NotifySystem.NotificationCenter.getInstance().postNotification(uiUpdateEvent);
 	}
 
 
