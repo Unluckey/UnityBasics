@@ -19,11 +19,12 @@ public class Buff_Fragile : Buff<Creature> {
 	public override void OnAttach (Creature owner,BuffBar<Creature> buffBar)
 	{
 		base.OnAttach (owner,buffBar);
-
+		restDuration = duration;
 	}
 	public override void Run (Creature owner)
 	{
 		base.Run (owner);
+		UpdateRestDuration ();
 		Debug.Log ("FragileRuning in "+owner.GetID().ToString());
 	}
 	public override void OnCover (Creature owner,Buff<Creature> buff)

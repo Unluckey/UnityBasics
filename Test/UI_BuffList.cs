@@ -18,7 +18,9 @@ public class UI_BuffList : NotifySystem.MonoListener
 		if (owner.GetID () == target.GetID ()) {
 			string listString = "Buff:\n";
 			foreach (Buff<Creature> buff in owner.buffs.buffList) {
-				listString = listString + buff.GetName (); 
+				listString = listString + buff.GetName () +" "+
+					(buff.layerCount>1?(buff.layerCount.ToString() +" "):"")+ 
+					buff.restDuration.ToString("0.0")+"s\n";
 			}
 
 			Debug.Log ("BuffUI Update " + owner.GetID ().ToString ());

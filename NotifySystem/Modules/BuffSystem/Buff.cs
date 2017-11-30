@@ -8,7 +8,9 @@ public class Buff<T>{
 	protected int ID = 0;
 	protected string buffName = null;
 	protected string discription = null;
+	public int layerCount = 1;
 	public float duration = 0;
+	public float restDuration = 0;
 	public Dictionary<BuffCallback,BuffDelegator> recieverDic;
 	public int GetID(){
 		return ID;
@@ -46,5 +48,9 @@ public class Buff<T>{
 	}
 	protected virtual bool isTimeUp(){
 		return Time.time > startTime + duration;;
+	}
+	protected virtual float UpdateRestDuration(){
+		restDuration = startTime + duration - Time.time;
+		return restDuration;
 	}
 }

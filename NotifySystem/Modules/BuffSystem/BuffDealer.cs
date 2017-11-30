@@ -23,7 +23,6 @@ class BuffDealer:NotifySystem.Listener{
 		(notifyEvent.Params ["target"] as Creature).buffs.AttachBuff (
 			notifyEvent.Params ["buff"] as Buff<Creature>
 		);
-		Debug.Log ("Buff!!!");
 	}
 
 

@@ -68,7 +68,9 @@ namespace NotifySystem{
 		public void postNotification(NotifyEvent notifyEvent){
 			EventListenerDelegate listenerDelegate;
 			if (notifications.TryGetValue (notifyEvent.Type, out listenerDelegate)) {
-				listenerDelegate.Invoke (notifyEvent);
+				if(listenerDelegate != null && listenerDelegate.GetInvocationList().Length != 0){
+					listenerDelegate.Invoke (notifyEvent);
+				}
 			}
 		}
 

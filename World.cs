@@ -24,7 +24,16 @@ public class World:MonoBehaviour
 	public void GiveFragile(Creature target){
 		Dictionary<string,System.Object> param = new Dictionary<string, object> ();
 		param.Add ("target", target);
-		param.Add("buff",new Buff_Fragile(2.0f));
+		param.Add("buff",new Buff_Fragile(10.0f));
+		NotifySystem.NotificationCenter.getInstance ().postNotification (
+			new NotifySystem.NotifyEvent (NotifySystem.NotifyType.BUFF_ADD,param)
+		);
+	}
+
+	public void GivePoison(Creature target){
+		Dictionary<string,System.Object> param = new Dictionary<string, object> ();
+		param.Add ("target", target);
+		param.Add("buff",new Buff_Poison(5.0f));
 		NotifySystem.NotificationCenter.getInstance ().postNotification (
 			new NotifySystem.NotifyEvent (NotifySystem.NotifyType.BUFF_ADD,param)
 		);

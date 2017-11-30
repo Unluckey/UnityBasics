@@ -14,6 +14,9 @@ class PlayerIdle:State<Player>{
 
 
 	void KeyCheck(Player owner){
+		if(Input.GetKeyDown(KeyCode.LeftControl)){
+			owner.moveControl.ChangeState(new PlayerPick());
+		}
 		if (Input.GetKey(KeyCode.LeftArrow)) {
 			owner.faceLeft ();
 			owner.moveControl.ChangeState (new playerMove ());
