@@ -13,7 +13,7 @@ public class Player : Creature {
 	public StateMachine<Player> moveControl;
 
 	public Transform groundCheckPoint;
-	public float groundCheckRadius = 0.1f;
+	public float groundCheckRadius = 0.05f;
 
 	public Rigidbody2D body;
 	public SpriteRenderer spriteRenderer;

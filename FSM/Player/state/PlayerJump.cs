@@ -12,20 +12,17 @@ public class PlayerJump : State<Player>{
 	}
 	public override void Run (Player owner){
 		KeyCheck (owner);
-		if (owner.body.velocity.y <= 0) {
-			owner.moveControl.ChangeState (new PlayerFall ());
-		}
+		PlayerInputChecker.CheckFall(owner);
 	}
 	public override void Exit (Player owner)
 	{
 		owner.anim.SetBool ("jump",false);
 	}
-
 	void KeyCheck(Player owner){
 		PlayerInputChecker.instance.CheckHorizonMove (owner);
-		if (Input.GetKeyUp (KeyCode.Z)) {
+	/*	if (Input.GetKeyUp (KeyCode.Z)) {
 			owner.body.velocity = new Vector2 (owner.body.velocity.x, 0);
-		}
+		}*/
 	}
 }
 

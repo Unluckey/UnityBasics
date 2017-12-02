@@ -6,6 +6,7 @@ public class playerMove : State<Player>{
 		owner.anim.SetBool("move",true);
 	}
 	override public void Run(Player owner){
+		PlayerInputChecker.CheckFall (owner);
 		KeyCheck (owner);
 	}
 	override public void Exit(Player owner){

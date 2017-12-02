@@ -15,6 +15,11 @@ public class PlayerInputChecker
 		}
 		set{ }
 	}
+	public static  void CheckFall(Player owner){
+		if (!owner.isOnGround() && owner.body.velocity.y < 0 ){
+			owner.moveControl.ChangeState (new PlayerFall ());
+		}
+	}
 	public void CheckHorizonMove(Player owner){
 		float moveVelocity = 0;
 		//move

@@ -6,7 +6,9 @@ class PlayerIdle:State<Player>{
 	}
 	override public void Run(Player owner){
 		Debug.Log("idle");
+		PlayerInputChecker.CheckFall (owner);
 		KeyCheck(owner);
+
 	}
 	override public void Exit(Player owner){
 	
@@ -14,6 +16,7 @@ class PlayerIdle:State<Player>{
 
 
 	void KeyCheck(Player owner){
+		PlayerInputChecker.instance.CheckHorizonMove (owner);
 		if(Input.GetKeyDown(KeyCode.LeftControl)){
 			owner.moveControl.ChangeState(new PlayerPick());
 		}

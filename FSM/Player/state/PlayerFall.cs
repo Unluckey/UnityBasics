@@ -5,6 +5,7 @@ public class PlayerFall : State<Player>{
 	public override void Enter (Player owner)
 	{
 		base.Enter (owner);
+		owner.anim.SetBool ("onGround", false);
 		owner.anim.SetBool ("fall",true);
 	}
 	public override void Run(Player owner){
